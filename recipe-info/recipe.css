@@ -1,0 +1,38 @@
+body {
+    max-width: 960px;
+    box-sizing: border-box;
+    margin: 40px auto;
+    font-family: 'Roboto', Helvetica, sans-serif;
+    letter-spacing: 3px;
+    font-size: 14px;
+    background-image: url('../images/bg.svg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+header { 
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 7px;
+    margin-bottom: 10px;
+}
+
+.row,
+.row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 50px;
+    margin-bottom: 40px;
+
+}
+
+.row-2 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+
+}
+
+.col-row {
+    margin-bottom: 10px;
+}
