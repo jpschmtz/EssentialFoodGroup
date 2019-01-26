@@ -27,10 +27,23 @@ $("#clickSearch").on("click", function(){
 	location.href = "list.html";
 });
 
-// replicated the landing page search function
+$("#clickSearch").keyup(function(){
+	var keyCode = (event.keyCode ? event.keyCode : event.which);
+	if (keyCode == 13){
+		var ingredient = $(".search").val().trim();
+	console.log(ingredient);
+	$(".search").val("");
+	// push search term to Firebase database
+	searches.push(ingredient);
+	// redirect to the list.html page
+	location.href = "list.html";
+	}
+});
+
+// replicated the landing page search function v bc
 
 $("#listSearch").on("click", function(){
-	var ingredient = $(".listSearch").val().trim();
+	var ingredient = $(".recipeSearch").val().trim();
 	console.log(ingredient);
 	$(".search").val("");
 	// push search term to Firebase database
@@ -38,6 +51,20 @@ $("#listSearch").on("click", function(){
 	// redirect to the list.html page
 	location.href = "list.html";
 });
+
+$(".recipeSearch").keyup(function(){
+	var keyCode = (event.keyCode ? event.keyCode : event.which);
+	if (keyCode == 13){
+		var ingredient = $(".recipeSearch").val().trim();
+	console.log(ingredient);
+	$(".search").val("");
+	// push search term to Firebase database
+	searches.push(ingredient);
+	// redirect to the list.html page
+	location.href = "list.html";
+	}
+});
+
 
 searches.orderByKey().limitToLast(1).on("child_added", function(snapshot) {
 	var ingredient = snapshot.val();
