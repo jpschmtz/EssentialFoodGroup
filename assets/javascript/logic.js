@@ -40,7 +40,7 @@ $("#listSearch").on("click", function(){
 	location.href = "list.html";
 });
 
-searches.on("child_added", function(snapshot) {
+searches.orderByKey().limitToLast(1).on("child_added", function(snapshot) {
     var ingredient = snapshot.val();
 	console.log("Pulled from Firebase: " + ingredient);
 	var baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients??number=5&ranking=1&ingredients="
