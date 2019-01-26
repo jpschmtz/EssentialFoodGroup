@@ -24,6 +24,20 @@ $("#clickSearch").on("click", function(){
 	$(".search").val("");
 	// push search term to Firebase database
 	searches.push(ingredient);
+	// redirect to the list.html page
+	location.href = "list.html";
+});
+
+// replicated the landing page search function
+
+$("#listSearch").on("click", function(){
+	var ingredient = $(".listSearch").val().trim();
+	console.log(ingredient);
+	$(".search").val("");
+	// push search term to Firebase database
+	searches.push(ingredient);
+	// redirect to the list.html page
+	location.href = "list.html";
 });
 
 searches.on("child_added", function(snapshot) {
@@ -38,6 +52,7 @@ searches.on("child_added", function(snapshot) {
 	}).then(function(response) {
 		console.log(response);
 		results.push(response);
+		// console.log(response.id)
 	});
 });
 
