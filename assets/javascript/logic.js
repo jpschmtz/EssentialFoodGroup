@@ -59,6 +59,7 @@ searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 			var title = $("<p>").text(listTitle);
 			console.log(listTitle);
 			result.attr("id", i);
+			result.attr("class", "recipeRow");
 			var imgUrl = response[i].image;
 			console.log(imgUrl);
 
