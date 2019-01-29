@@ -16,7 +16,7 @@ var searches = database.ref("/recipe-searches");
 var results = database.ref("recipe-results");
 
 
-// Landing page search functions
+// Landing page/List page search functions
 $("#clickSearch").on("click", function () {
 	var ingredient = $(".search").val().trim();
 	console.log(ingredient);
@@ -26,31 +26,11 @@ $("#clickSearch").on("click", function () {
 	// redirect to the list.html page
 	location.href = "list.html";
 });
-//test comment
+
 $(".search").keyup(function () {
 	var keyCode = (event.keyCode ? event.keyCode : event.which);
 	if (keyCode == 13) {
 		var ingredient = $(".search").val().trim();
-		console.log(ingredient);
-		$(".search").val("");
-		searches.push(ingredient);
-		location.href = "list.html";
-	}
-});
-
-// List page search functions
-$("#listSearch").on("click", function () {
-	var ingredient = $(".recipeSearch").val().trim();
-	console.log(ingredient);
-	$(".search").val("");
-	searches.push(ingredient);
-	location.href = "list.html";
-});
-
-$(".recipeSearch").keyup(function () {
-	var keyCode = (event.keyCode ? event.keyCode : event.which);
-	if (keyCode == 13) {
-		var ingredient = $(".recipeSearch").val().trim();
 		console.log(ingredient);
 		$(".search").val("");
 		searches.push(ingredient);
