@@ -26,6 +26,7 @@ $("#clickSearch").on("click", function () {
 	// redirect to the list.html page
 	location.href = "list.html";
 });
+//test comment
 $(".search").keyup(function () {
 	var keyCode = (event.keyCode ? event.keyCode : event.which);
 	if (keyCode == 13) {
