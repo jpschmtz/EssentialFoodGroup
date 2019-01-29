@@ -19,21 +19,19 @@ header {
 }
 
 .row,
-.row-2 {
+.recipes
+ {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 50px;
     margin-bottom: 40px;
-
-}
-
-.row-2 {
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 10px;
-
 }
 
 .recipes {
-    height: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
 }
 
+.recipeRow {
+    margin-bottom: 40px;
+}
