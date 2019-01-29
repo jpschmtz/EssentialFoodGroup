@@ -1,0 +1,2 @@
+var spoonacularPriceView = 2;
+
