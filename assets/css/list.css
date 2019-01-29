@@ -27,7 +27,7 @@ header {
 
 }
 
-.row-2 {
+.recipeRow {
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 10px;
 
