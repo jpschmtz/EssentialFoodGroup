@@ -14,6 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var searches = database.ref("/recipe-searches");
 var results = database.ref("/recipe-results"); // seems to be working but should it have a / like the searches node ref?
+var exercise = database.ref("/exercise-calories");
 var calories;
 
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
@@ -130,26 +131,35 @@ $(document).on("click", ".recipe", function() {
 				// console.log($(strong[i]).text());
 				calories = $(strong[i]).text();
 				console.log(calories);
+				exercise.push(calories);
 			}
 		};
-		$.ajax({
-			url: "https://trackapi.nutritionix.com/v2/natural/exercise",
-			type: "POST",
-			data: {
-				query: calories + " walk " + calories + " swim " + calories + " biking"
-			},
-			headers: {
-				"x-app-id":"f2e8e6e8",
-				"x-app-key":"9f46a0f17850cc26bc5d992644bd3c2d"
-			}
-		}).then(function (response) {
-			console.log(response);
-			var walking = response.exercises[0].duration_min;
-			var swim = response.exercises[1].duration_min;
-			var bike = response.exercises[2].duration_min;
-			console.log("minutes of walking " + walking);
-			console.log("minutes of swiming " + swim);
-			console.log("minutes of biking " + bike);
-		});
+	});
+	location.href = "recipe.html";
+});
+
+
+exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var calorieCount = snapshot.val();
+	$.ajax({
+		url: "https://trackapi.nutritionix.com/v2/natural/exercise",
+		type: "POST",
+		data: {
+			query: calorieCount + " walk " + calorieCount + " swim " + calorieCount + " biking"
+		},
+		headers: {
+			"x-app-id":"f2e8e6e8",
+			"x-app-key":"9f46a0f17850cc26bc5d992644bd3c2d"
+		}
+	}).then(function (response) {
+		console.log(response);
+		var walking = response.exercises[0].duration_min;
+		var swim = response.exercises[1].duration_min;
+		var bike = response.exercises[2].duration_min;
+		console.log("minutes of walking " + walking);
+		console.log("minutes of swiming " + swim);
+		console.log("minutes of biking " + bike);
+		// location.href = "recipe.html";
+		$("#info").html("<p>Minutes of Walking: " + walking + "</p><p>Minutes of Swimming: " + swim + "</p><p>Minutes of Biking: " + bike + "</p>");
 	});
 });
