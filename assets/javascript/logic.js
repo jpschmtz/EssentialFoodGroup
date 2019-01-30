@@ -117,6 +117,7 @@ $(document).on("click", ".recipe", function() {
 		console.log(recipeTitle);
 		var summary = JSON.stringify(response.summary);
 		console.log(summary);
+		details.push(summary);
 		finalRecipe.attr("class", "finalresult");
 		// var imgUrl = response[i].image;
 		// console.log(imgUrl);
@@ -140,7 +141,7 @@ $(document).on("click", ".recipe", function() {
 			}
 		};
 	});
-	//location.href = "recipe.html";
+	location.href = "recipe.html";
 });
 
 
@@ -167,4 +168,9 @@ exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 		// location.href = "recipe.html";
 		$("#info").html("<p>Minutes of Walking: " + walking + "</p><p>Minutes of Swimming: " + swim + "</p><p>Minutes of Biking: " + bike + "</p>");
 	});
+});
+
+details.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var summary = snapshot.val();
+	$("#summary").html("<p>Summary: " + summary);
 });
