@@ -108,7 +108,7 @@ $(document).on("click", ".recipe", function() {
 		method: "GET"
 	}).then(function(response) {
 		console.log(response);
-		//location.href = "recipe.html";
+		location.href = "recipe.html";
 		var finalRecipe = $("<div>");
 		var recipeTitle = response.title;
 		var title = $("<p>").text(recipeTitle);
@@ -150,6 +150,8 @@ $(document).on("click", ".recipe", function() {
 			console.log("minutes of walking " + walking);
 			console.log("minutes of swiming " + swim);
 			console.log("minutes of biking " + bike);
+
+			$('#infoMeal').text(walking);
 		});
 	});
 });
