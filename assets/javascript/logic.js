@@ -14,7 +14,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var searches = database.ref("/recipe-searches");
 var results = database.ref("/recipe-results"); // seems to be working but should it have a / like the searches node ref?
-var exercise = database.ref("/exercise-calories");
 var calories;
 
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
