@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 // Variables that refer to the firebase database and the recipe-searches branch
 var database = firebase.database();
 var searches = database.ref("/recipe-searches");
-var results = database.ref("recipe-results"); // seems to be working but should it have a / like the searches node ref?
+var results = database.ref("/recipe-results"); // seems to be working but should it have a / like the searches node ref?
 var calories;
 
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
