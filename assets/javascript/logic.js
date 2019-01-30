@@ -134,31 +134,10 @@ $(document).on("click", ".recipe", function() {
 				exercise.push(calories);
 			}
 		};
-<<<<<<< HEAD
-		$.ajax({
-			url: "https://trackapi.nutritionix.com/v2/natural/exercise",
-			type: "POST",
-			data: {
-				query: calories + " walk " + calories + " swim " + calories + " biking"
-			},
-			headers: {
-				"x-app-id":"f2e8e6e8",
-				"x-app-key":"9f46a0f17850cc26bc5d992644bd3c2d"
-			}
-		}).then(function (response) {
-			console.log(response);
-			var walking = response.exercises[0].duration_min;
-			var swim = response.exercises[1].duration_min;
-			var bike = response.exercises[2].duration_min;
-			console.log("minutes of walking " + walking);
-			console.log("minutes of swiming " + swim);
-			console.log("minutes of biking " + bike);
-
-			$('#infoMeal').text(walking);
-		});
-=======
 	});
 	location.href = "recipe.html";
+
+	$("#nf").html(finalRecipe);
 });
 
 
@@ -184,6 +163,5 @@ exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 		console.log("minutes of biking " + bike);
 		// location.href = "recipe.html";
 		$("#info").html("<p>Minutes of Walking: " + walking + "</p><p>Minutes of Swimming: " + swim + "</p><p>Minutes of Biking: " + bike + "</p>");
->>>>>>> master
 	});
 });
