@@ -13,7 +13,9 @@ firebase.initializeApp(config);
 // Variables that refer to the firebase database and the recipe-searches branch
 var database = firebase.database();
 var searches = database.ref("/recipe-searches");
-var results = database.ref("/recipe-results"); // seems to be working but should it have a / like the searches node ref?
+var results = database.ref("/recipe-results");
+var exercise = database.ref("/exercise-calories") // seems to be working but should it have a / like the searches node ref?
+var details = database.ref("/recipe-summary");
 var calories;
 
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
@@ -124,6 +126,10 @@ $(document).on("click", ".recipe", function() {
 		$(finalRecipe).prepend(title);
 		var strong = finalRecipe.find("b");
 
+		var ingredients = JSON.stringify(response.ingredient);
+		console.log(ingredients);
+		$("#infoMeal").html(summary);
+
 		for (i = 0; i < strong.length; i++) { 
 			// console.log($(strong[i]).text().indexOf("calorie"));
 			if ($(strong[i]).text().indexOf("calorie") > 0) {
@@ -134,7 +140,7 @@ $(document).on("click", ".recipe", function() {
 			}
 		};
 	});
-	location.href = "recipe.html";
+	//location.href = "recipe.html";
 });
 
 
