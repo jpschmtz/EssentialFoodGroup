@@ -16,11 +16,7 @@ var searches = database.ref("/recipe-searches");
 var results = database.ref("recipe-results");
 
 
-<<<<<<< HEAD
-// Landing page/List page search functions
-=======
 // Landing page search functions
->>>>>>> 5ce320b... fixed js/html updates
 $("#clickSearch").on("click", function () {
 	var ingredient = $(".search").val().trim();
 	console.log(ingredient);
@@ -30,10 +26,6 @@ $("#clickSearch").on("click", function () {
 	// redirect to the list.html page
 	location.href = "list.html";
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> 5ce320b... fixed js/html updates
 $(".search").keyup(function () {
 	var keyCode = (event.keyCode ? event.keyCode : event.which);
 	if (keyCode == 13) {
@@ -44,30 +36,6 @@ $(".search").keyup(function () {
 		location.href = "list.html";
 	}
 });
-
-<<<<<<< HEAD
-=======
-// List page search functions
-$("#listSearch").on("click", function () {
-	var ingredient = $(".recipeSearch").val().trim();
-	console.log(ingredient);
-	$(".search").val("");
-	searches.push(ingredient);
-	location.href = "list.html";
-});
-
-$(".recipeSearch").keyup(function () {
-	var keyCode = (event.keyCode ? event.keyCode : event.which);
-	if (keyCode == 13) {
-		var ingredient = $(".recipeSearch").val().trim();
-		console.log(ingredient);
-		$(".search").val("");
-		searches.push(ingredient);
-		location.href = "list.html";
-	}
-});
-
->>>>>>> 5ce320b... fixed js/html updates
 
 searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var ingredient = snapshot.val();
