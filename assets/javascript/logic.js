@@ -15,7 +15,6 @@ var database = firebase.database();
 var searches = database.ref("/recipe-searches");
 var results = database.ref("/recipe-results"); // seems to be working but should it have a / like the searches node ref?
 var exercise = database.ref("/exercise-calories");
-var details = database.ref("/recipe=summary");
 var calories;
 
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
@@ -91,7 +90,6 @@ searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 			$("#" + i).append(title);
 		};
 	});
-	
 });
 
 
@@ -111,7 +109,7 @@ $(document).on("click", ".recipe", function() {
 		method: "GET"
 	}).then(function(response) {
 		console.log(response);
-		location.href = "recipe.html";
+		//location.href = "recipe.html";
 		var finalRecipe = $("<div>");
 		var recipeTitle = response.title;
 		var title = $("<p>").text(recipeTitle);
@@ -159,7 +157,6 @@ exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 		var swim = response.exercises[1].duration_min;
 		var bike = response.exercises[2].duration_min;
 		console.log("minutes of walking " + walking);
-		console.log(calorieCount);
 		console.log("minutes of swiming " + swim);
 		console.log("minutes of biking " + bike);
 		// location.href = "recipe.html";
