@@ -20,8 +20,9 @@ header {
 
 .row-1 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 50px;
+    grid-template-columns: repeat(2, 2fr);
+    grid-column-gap: 30px;
+    margin: 50px 0;
 }
 
 /* search css */
@@ -58,9 +59,36 @@ header {
     text-align: center;
 }
 
-/* left column css*/
+/* the two columns css*/
 
 .titleName {
     font-size: 25px;
     font-weight: 500;
+    margin-bottom: 30px;
+}
+
+
+.subHead {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+p,
+.sumInfo {
+    margin: 25px 0;
+    line-height: 20px;
+}
+
+.mealImg {
+    width: 465px;
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+hr {
+    border: none;
+    width: 465px;
+    height: 4px;
+    background-color: #000000;
 }
