@@ -18,25 +18,13 @@ header {
     margin-bottom: 10px;
 }
 
-.row,
-.row-2 {
+.row-1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 50px;
-    margin-bottom: 40px;
-
 }
 
-.row-2 {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 20px;
-
-}
-
-.col-row {
-    margin-bottom: 10px;
-}
-
+/* search css */
 .search {
     padding: 10px 200px 10px 10px;
     border: solid 4px #000000;
@@ -47,6 +35,7 @@ header {
     outline-color: #3cbbb1;
 }
 
+/* hover css */
 .hvr-shadow {
     display: inline-block;
     vertical-align: middle;
@@ -64,8 +53,14 @@ header {
     color:#3cbbb1;
   }
 
+  /* font awesome icons */
   .icons {
     text-align: center;
-  
 }
-  
+
+/* left column css*/
+
+.titleName {
+    font-size: 25px;
+    font-weight: 500;
+}

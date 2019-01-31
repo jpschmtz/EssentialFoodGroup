@@ -212,5 +212,5 @@ recipeImage.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 
 recipeTitle.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var title = snapshot.val();
-	$("#title").html("<h3>" + title + "</h3>");
+	$("#title").html(title);
 });
