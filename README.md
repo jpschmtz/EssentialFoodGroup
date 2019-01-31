@@ -12,15 +12,15 @@ Features
 
 Built With
 ------------
-![alt text](/images/html5.png "HTML5 logo")
+![alt text](https://cdn.rawgit.com/jpschmtz/EssentialFoodGroup/master/assets/images/html5.png "HTML5 logo")
 
-![alt text](/images/css3.png "CSS3 logo")
+![alt text](https://cdn.rawgit.com/jpschmtz/EssentialFoodGroup/master/assets/images/css3.png "CSS3 logo")
 
-![alt text](/images/javascript.png "Javascript logo")
+![alt text](https://cdn.rawgit.com/jpschmtz/EssentialFoodGroup/master/assets/images/javascript.png "Javascript logo")
 
-![alt text](/images/jquery_logo.png "Jquery logo")
+![alt text](https://cdn.rawgit.com/jpschmtz/EssentialFoodGroup/master/assets/images/jquery_logo.png "Jquery logo")
 
-![alt text](/images/firebase.png "Firebase logo")
+![alt text](https://cdn.rawgit.com/jpschmtz/EssentialFoodGroup/master/assets/images/firebase.png "Firebase logo")
 
 APIs Used
 ---------
