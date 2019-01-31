@@ -6,220 +6,168 @@ var config = {
 	projectId: "essential-food-group",
 	storageBucket: "essential-food-group.appspot.com",
 	messagingSenderId: "971437057033"
-	};
+};
 	
-	firebase.initializeApp(config);
-	
-	// Variables that refer to the firebase database and the recipe-searches branch
-	var database = firebase.database();
-	var searches = database.ref("/recipe-searches");
-	var results = database.ref("recipe-results");
-	
-	
-	// Landing page search functions
-	$("#clickSearch").on("click", function () {
-		var ingredient = $(".search").val().trim();
-		console.log(ingredient);
-		$(".search").val("");
-		// push search term to Firebase database
-		searches.push(ingredient);
-		// redirect to the list.html page
-		location.href = "list.html";
+firebase.initializeApp(config);
+
+// Variables that refer to the firebase database and the recipe-searches branch
+var database = firebase.database();
+var searches = database.ref("/recipe-searches");
+var results = database.ref("/recipe-results");
+var exercise = database.ref("/exercise-calories") // seems to be working but should it have a / like the searches node ref?
+var details = database.ref("/recipe-summary");
+var calories;
+
+// Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
+function search() {
+	var ingredient = $(".search").val().trim();
+	console.log(ingredient);
+	console.log("testing global function");
+	$(".search").val("");
+	// push search term to Firebase database
+	searches.push(ingredient);
+	// redirect to the list.html page
+	location.href = "list.html";
+};
+
+
+// Landing page search functions
+$(".clickSearch").on("click", function () {
+	search();
+});
+
+$(".search").keyup(function () {
+	var keyCode = (event.keyCode ? event.keyCode : event.which);
+	if (keyCode == 13) {
+		search();
+	}
+});
+
+// List page search functions
+$("#listSearch").on("click", function () {
+	search();
+});
+
+$(".recipeSearch").keyup(function () {
+	var keyCode = (event.keyCode ? event.keyCode : event.which);
+	if (keyCode == 13) {
+		search();
+	}
+});
+
+// Pull search term from Firebase and feed into Spoonacular API for recipe search
+searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var ingredient = snapshot.val();
+
+	console.log("Pulled from Firebase: " + ingredient);
+	var baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients??number=5&ranking=1&ingredients="
+	var apiKey = "&mashape-key=3ecf811a02msh7edb1779cb43feap163d3ejsn0447e90a0ef2";
+	var queryURL = baseURL + ingredient + apiKey;
+	$.ajax({
+		url: queryURL,
+		method: "GET"
+	}).then(function (response) {
+		console.log(response);
+		results.push(response);
+		var i;
+		for (i = 0; i < response.length; i++) {
+			var result = $("<div>");
+			var listTitle = response[i].title;
+			var title = $("<p>").text(listTitle);
+			console.log(listTitle);
+			var id = response[i].id;
+			console.log(id);
+			result.attr("id", ""+i+"");
+			result.attr("recipeID", ""+id+"");
+			result.attr("class", "recipe");
+			var imgUrl = response[i].image;
+			console.log(imgUrl);
+
+			var listImg = $("<img>");
+			listImg.attr("src", imgUrl);
+
+			$(".recipes").append(result);
+			$("#" + i).append(listImg);
+			$("#" + i).append(title);
+		};
 	});
-	$(".search").keyup(function () {
-		var keyCode = (event.keyCode ? event.keyCode : event.which);
-		if (keyCode == 13) {
-			var ingredient = $(".search").val().trim();
-			console.log(ingredient);
-			$(".search").val("");
-			searches.push(ingredient);
-			location.href = "list.html";
-		}
-	});
-	
-	// List page search functions
-	$("#listSearch").on("click", function () {
-		var ingredient = $(".recipeSearch").val().trim();
-		console.log(ingredient);
-		$(".search").val("");
-		searches.push(ingredient);
-		location.href = "list.html";
-	});
-	
-	$(".recipeSearch").keyup(function () {
-		var keyCode = (event.keyCode ? event.keyCode : event.which);
-		if (keyCode == 13) {
-			var ingredient = $(".recipeSearch").val().trim();
-			console.log(ingredient);
-			$(".search").val("");
-			searches.push(ingredient);
-			location.href = "list.html";
-		}
-	});
-	
-	firebase.initializeApp(config);
-	
-	// Create variables that refer to the firebase database and the recipe-searches branch
-	var database = firebase.database();
-	var searches = database.ref("/recipe-searches");
-	var results = database.ref("recipe-results");
-	
-	// on click function to capture what user searches for
-	// is there a way for users to search using "Enter" key?
-	$("#clickSearch").on("click", function(){
-		var ingredient = $(".search").val().trim();
-		console.log(ingredient);
-		$(".search").val("");
-		// push search term to Firebase database
-		searches.push(ingredient);
-		// redirect to the list.html page
-		location.href = "list.html";
-	});
-	
-	// replicated the landing page search function
-	
-	$("#listSearch").on("click", function(){
-		var ingredient = $(".listSearch").val().trim();
-		console.log(ingredient);
-		$(".search").val("");
-		// push search term to Firebase database
-		searches.push(ingredient);
-		// redirect to the list.html page
-		location.href = "list.html";
-	});
-	
-	
-		// var fitURL = "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate";
-		// var fitApiKey = "AIzaSyALb1gwy2yytMD70XFhHvGqxUxMQRvXZHM";
-		// var fitQueryURL = "https://www.googleapis.com/fitness/v1/users/me/dataSources";
-		// $.ajax({
-		// 	url: "https://conversation_username:conversation_password@gateway.watsonplatform.net/conversation/api/v1/workspaces/CONVERSATION_ID/message?version=2016-07-11",
-		// 	method: "POST",
-		// 	headers: {
-		// 	  "Content-Type": "application/json"
-		// 	},
-		// 	data: {
-		// 	  input: {
-		// 		text: " "
-		// 	  }
-		// 	}
-		//   })
-		//   done(function(data) {
-		// 	// handle success response
-		//   })
-		//   .fail(function(err) {
-		// 	// handle error response
-		//   });
-	
-	searches.orderByKey().limitToLast(1).on("child_added", function(snapshot) {
-		var ingredient = snapshot.val();
-		
-		console.log("Pulled from Firebase: " + ingredient);
-		var baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients??number=5&ranking=1&ingredients="
-		var apiKey = "&mashape-key=5b49b5076dmsh8b19b82d3d1e352p188cb3jsn37c3b8570750";
-		var queryURL = baseURL + ingredient + apiKey;
-		$.ajax({
-			url: queryURL,
-			method: "GET"
-		}).then(function(response) {
-			console.log(response);
-			results.push(response);
-			var i;
-			for (i=0; i < response.length; i++) {
-				var result = $("<div>");
-				var listTitle = response[i].title;
-				var title = $("<p>").text(listTitle);
-				console.log(listTitle);
-				var id = response[i].id;
-				console.log(id);
-				result.attr("id", ""+i+"");
-				result.attr("recipe", ""+id+"");
-				result.attr("class", "recipe");
-				var imgUrl = response[i].image;
-				console.log(imgUrl);
-	
-				var listImg = $("<img>");
-				listImg.attr("src", imgUrl);
-	
-				$(".recipes").append(result);
-				$("#" + i).append(listImg);
-				$("#" + i).append(title)
-			};
-		});
-	});
-	
-	searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
-		var ingredient = snapshot.val();
-	
-		console.log("Pulled from Firebase: " + ingredient);
-		var baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients??number=5&ranking=1&ingredients="
-		var apiKey = "&mashape-key=5b49b5076dmsh8b19b82d3d1e352p188cb3jsn37c3b8570750";
-		var queryURL = baseURL + ingredient + apiKey;
-		$.ajax({
-			url: queryURL,
-			method: "GET"
-		}).then(function (response) {
-			console.log(response);
-			results.push(response);
-			var i;
-			for (i = 0; i < response.length; i++) {
-				var result = $("<div>");
-				var listTitle = response[i].title;
-				var title = $("<p>").text(listTitle);
-				console.log(listTitle);
-				result.attr("id", i);
-				result.attr("class", "recipeRow")
-				var imgUrl = response[i].image;
-				console.log(imgUrl);
-	
-				var listImg = $("<img>");
-				listImg.attr("src", imgUrl);
-	
-				$(".recipes").prepend(result);
-				$("#" + i).append(listImg);
-				$("#" + i).append(title)
-			};
-		});
-	// search the spoontacular API for recipe summary
-	$(document).on("click", ".recipe", function() {
-		console.log(this);
-		var recipeID = $(this).attr("recipe");
-		console.log(recipeID);
-		var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + recipeID + "/summary"
-		var apiKey = "&mashape-key=5b49b5076dmsh8b19b82d3d1e352p188cb3jsn37c3b8570750";
-		var widgitURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/nutritionWidget"
-		var summaryURL = recipeURL + apiKey;
+});
+
+
+// clicking on recipe list div extracts calorie count for chosen recipe and feeds it into
+// nutritionix API to pull exercise equivalent data
+
+$(document).on("click", ".recipe", function() {
+	console.log(this);
+	var recipeID = $(this).attr("recipeid");
+	var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID +"/summary??";
+	//var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/"+ recipeID +"/information?amount=0&unit=gram??";
+	var apiKey = "&mashape-key=5b49b5076dmsh8b19b82d3d1e352p188cb3jsn37c3b8570750";
+	// var widgitURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/nutritionWidget"
+	var summaryURL = recipeURL + apiKey;
+	$.ajax({
+		url: summaryURL,
+		method: "GET"
+	}).then(function(response) {
+		console.log(response);
 		//location.href = "recipe.html";
-		console.log(summaryURL);
-		// $.ajax({
-		// 	url: summaryURL,
-		// 	method: "GET"
-		// }).then(function(response) {
-		// 	console.log(response);
-		// });
-		
-	
-	
-	
-		// nutritionix.com link https://trackapi.nutritionix.com/v2/search/item?nix_item_id=513fc9e73fe3ffd40300109f
-		// instant search https://trackapi.nutritionix.com/v2/search/instant?query=
-		// API appID 94e6f4cd & appKey b4dc2ec4af61524c35664ecb7ac47083
-		// var calorie = 100;
-		// $.ajax({
-		// 	url: "https://trackapi.nutritionix.com/v2/search/instant?query="+ calorie +"calorie walk",
-		// 	method: "GET";
-		// 	headers: {
-		// 	'x-app-id': "94e6f4cd";
-		// 	'x-app-key': "b4dc2ec4af61524c35664ecb7ac47083";
-		// 	}
-		//   }).done(function(response) {
-		// 	console.log(response);
-		//   });
-			// $.ajax({
-			// 	url: summaryURL,
-			// 	method: "GET"
-			// }).then(function(response) {
-			// 	console.log(response);
-			// });
+		var finalRecipe = $("<div>");
+		var recipeTitle = response.title;
+		var title = $("<p>").text(recipeTitle);
+		console.log(recipeTitle);
+		var summary = JSON.stringify(response.summary);
+		console.log(summary);
+		details.push(summary);
+		finalRecipe.attr("class", "finalresult");
+		// var imgUrl = response[i].image;
+		// console.log(imgUrl);
+		// var listImg = $("<img>");
+		// listImg.attr("src", imgUrl);
+		$(finalRecipe).html(summary);
+		$(finalRecipe).prepend(title);
+		var strong = finalRecipe.find("b");
+
+
+		for (i = 0; i < strong.length; i++) { 
+			// console.log($(strong[i]).text().indexOf("calorie"));
+			if ($(strong[i]).text().indexOf("calorie") > 0) {
+				// console.log($(strong[i]).text());
+				calories = $(strong[i]).text();
+				console.log(calories);
+				exercise.push(calories);
+			}
+		};
 	});
+	location.href = "recipe.html";
+});
+
+
+exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var calorieCount = snapshot.val();
+	$.ajax({
+		url: "https://trackapi.nutritionix.com/v2/natural/exercise",
+		type: "POST",
+		data: {
+			query: calorieCount + " walk " + calorieCount + " swim " + calorieCount + " biking"
+		},
+		headers: {
+			"x-app-id":"f2e8e6e8",
+			"x-app-key":"9f46a0f17850cc26bc5d992644bd3c2d"
+		}
+	}).then(function (response) {
+		console.log(response);
+		var walking = response.exercises[0].duration_min;
+		var swim = response.exercises[1].duration_min;
+		var bike = response.exercises[2].duration_min;
+		console.log("minutes of walking " + walking);
+		console.log("minutes of swiming " + swim);
+		console.log("minutes of biking " + bike);
+		// location.href = "recipe.html";
+		$("#info").html("<p>Minutes of Walking: " + walking + "</p><p>Minutes of Swimming: " + swim + "</p><p>Minutes of Biking: " + bike + "</p>");
+	});
+});
+
+details.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var summary = snapshot.val();
+	$("#summary").html("<p>Summary: " + summary);
 });

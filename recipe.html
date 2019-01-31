@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 </head>
 
 <body>
@@ -37,9 +38,8 @@
     <div class='container'>
         <div class='row-2'>
             <div class='col-informaion'>
-                <div class='col-row' id='info'>
-                    <p>time,exercise,serving</p>
-                </div>
+                <div><p>Excercise</p></div>
+                <div class='col-row' id='info'></div>
 
                 <div class='col-row' id='ingredients'>
                     <p>ingredients/costs</p>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class='col-informaion'>
+            <div class='col-informaion' id='summary'></div>
                 <p>directions</p>
             </div>
         </div>
@@ -71,6 +71,7 @@
 
     <!--link to javascript-->
     <script src="assets/javascript/logic.js"></script>
+
 
 </body>
 
