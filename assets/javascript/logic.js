@@ -191,6 +191,7 @@ $.ajax({
 details.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var summary = snapshot.val();
 	$("#summary").html(summary);
+
 });
 
 ingredientList.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
