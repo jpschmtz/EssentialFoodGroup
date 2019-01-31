@@ -190,7 +190,7 @@ $.ajax({
 
 details.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var summary = snapshot.val();
-	$("#summary").html("<p>Summary: " + summary);
+	$("#summary").html("<p>Summary: " + summary + "</p>");
 });
 
 ingredientList.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
