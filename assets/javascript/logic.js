@@ -13,8 +13,9 @@ firebase.initializeApp(config);
 // Variables that refer to the firebase database and the recipe-searches branch
 var database = firebase.database();
 var searches = database.ref("/recipe-searches");
-var results = database.ref("/recipe-results"); // seems to be working but should it have a / like the searches node ref?
-var exercise = database.ref("/exercise-calories");
+var results = database.ref("/recipe-results");
+var exercise = database.ref("/exercise-calories") // seems to be working but should it have a / like the searches node ref?
+var details = database.ref("/recipe-summary");
 var calories;
 
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
@@ -116,6 +117,7 @@ $(document).on("click", ".recipe", function() {
 		console.log(recipeTitle);
 		var summary = JSON.stringify(response.summary);
 		console.log(summary);
+		details.push(summary);
 		finalRecipe.attr("class", "finalresult");
 		// var imgUrl = response[i].image;
 		// console.log(imgUrl);
@@ -124,6 +126,7 @@ $(document).on("click", ".recipe", function() {
 		$(finalRecipe).html(summary);
 		$(finalRecipe).prepend(title);
 		var strong = finalRecipe.find("b");
+
 
 		for (i = 0; i < strong.length; i++) { 
 			// console.log($(strong[i]).text().indexOf("calorie"));
@@ -162,4 +165,9 @@ exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 		// location.href = "recipe.html";
 		$("#info").html("<p>Minutes of Walking: " + walking + "</p><p>Minutes of Swimming: " + swim + "</p><p>Minutes of Biking: " + bike + "</p>");
 	});
+});
+
+details.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var summary = snapshot.val();
+	$("#summary").html("<p>Summary: " + summary);
 });
