@@ -181,16 +181,17 @@ $.ajax({
 	var walking = response.exercises[0].duration_min;
 	var swim = response.exercises[1].duration_min;
 	var bike = response.exercises[2].duration_min;
-	console.log("minutes of walking " + walking);
-	console.log("minutes of swiming " + swim);
-	console.log("minutes of biking " + bike);
-	$("#info").html("<p>Minutes of Walking: " + walking + "</p><p>Minutes of Swimming: " + swim + "</p><p>Minutes of Biking: " + bike + "</p>");
+	console.log("Walking " + walking);
+	console.log("Swiming " + swim);
+	console.log("Biking " + bike);
+	$("#info").html("<p>Walking: " + walking + "</p><p>Swimming: " + swim + "</p><p>Biking: " + bike + "</p>");
 });
 });
 
 details.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var summary = snapshot.val();
-	$("#summary").html("<p>Summary: " + summary + "</p>");
+	$("#summary").html(summary);
+
 });
 
 ingredientList.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
@@ -212,5 +213,5 @@ recipeImage.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 
 recipeTitle.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var title = snapshot.val();
-	$("#title").html("<h3>" + title + "</h3>");
+	$("#title").html(title);
 });
