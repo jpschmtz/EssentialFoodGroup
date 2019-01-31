@@ -127,9 +127,6 @@ $(document).on("click", ".recipe", function() {
 		$(finalRecipe).prepend(title);
 		var strong = finalRecipe.find("b");
 
-		var ingredients = JSON.stringify(response.ingredient);
-		console.log(ingredients);
-		$("#infoMeal").html(summary);
 
 		for (i = 0; i < strong.length; i++) { 
 			// console.log($(strong[i]).text().indexOf("calorie"));
