@@ -207,10 +207,10 @@ recipeImage.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var imageSrc = snapshot.val();
 	var image = $("<img>");
 	image.attr("src", imageSrc);
-	$("#info").append(image);
+	$("#image").html(image);
 });
 
 recipeTitle.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var title = snapshot.val();
-	$("#info").append("<h3>" + title + "</h3>");
+	$("#title").html("<h3>" + title + "</h3>");
 });
