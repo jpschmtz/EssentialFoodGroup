@@ -17,6 +17,8 @@ var results = database.ref("/recipe-results");
 var exercise = database.ref("/exercise-calories") // seems to be working but should it have a / like the searches node ref?
 var details = database.ref("/recipe-summary");
 var ingredientList = database.ref("/ingredient-list");
+var recipeImage = database.ref("/image");
+var recipeTitle = database.ref("/recipe-title");
 var instructions = database.ref("/instructions");
 var fullIngList = [];
 var calories;
@@ -122,6 +124,8 @@ $(document).on("click", ".recipe", function() {
 		};
 		ingredientList.push(fullIngList);
 		instructions.push(response.instructions);
+		recipeImage.push(response.image);
+		recipeTitle.push(response.title);
 	});
 	
 	$.ajax({
@@ -197,4 +201,16 @@ ingredientList.orderByKey().limitToLast(1).on("child_added", function (snapshot)
 instructions.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 	var instructions = snapshot.val();
 	$("#instructions").html("<p>" + instructions + "</p>");
+});
+
+recipeImage.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var imageSrc = snapshot.val();
+	var image = $("<img>");
+	image.attr("src", imageSrc);
+	$("#info").append(image);
+});
+
+recipeTitle.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
+	var title = snapshot.val();
+	$("#info").append("<h3>" + title + "</h3>");
 });
