@@ -1,14 +1,15 @@
 Know-It-All Meals
 ==============
-Know-It-All Meals is a simple web application designed to help you find recipes based on ingredients you search for. 
+Know-It-All Meals is a simple web application designed to help you find recipes based on ingredients you search for.
+
+![](assets/images/app.gif)
 
 Features
 -----------
 * Simple UI
 * Easy to use
-* Generate recipes with ingredients you enjoy 
+* Generate recipes with ingredients you enjoy
 * Find exercises to burn off your meal
-
 
 Built With
 ------------
