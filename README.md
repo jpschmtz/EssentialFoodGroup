@@ -1,14 +1,17 @@
 Know-It-All Meals
 ==============
-Know-It-All Meals is a simple web application designed to help you find recipes based on ingredients you search for. 
+Know-It-All Meals is a simple web application designed to not only find you recipes, but find corresponding exercises to burn off the meal of your choice!
+
+![](assets/images/app.gif)
+
+[Demo Here!](https://jpschmtz.github.io/EssentialFoodGroup/)
 
 Features
 -----------
 * Simple UI
 * Easy to use
-* Generate recipes with ingredients you enjoy 
+* Generate recipes with ingredients you enjoy
 * Find exercises to burn off your meal
-
 
 Built With
 ------------
@@ -25,11 +28,11 @@ APIs Used
 
 Team Members
 ------------------
-Project Lead: Joseph Schmitz <https://github.com/jpschmtz>
+Project Lead: [Joseph Schmitz](https://github.com/jpschmtz)
 
-Front-End: Jessica Chen <https://github.com/jchen211>
+Front-End: [Jessica Chen](https://github.com/jchen211)
 
-Back-End: Shehan Peiris <https://github.com/shehanpeiris>
+Back-End: [Shehan Peiris](https://github.com/shehanpeiris)
 
-Quality Manager: Tiffani Dominguez <https://github.com/TiffaniD3>
+Quality Manager: [Tiffani Dominguez](https://github.com/TiffaniD3)
 

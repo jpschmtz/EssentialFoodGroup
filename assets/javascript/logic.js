@@ -7,7 +7,7 @@ var config = {
 	storageBucket: "essential-food-group.appspot.com",
 	messagingSenderId: "971437057033"
 };
-	
+
 firebase.initializeApp(config);
 
 // Variables that refer to the firebase database and the recipe-searches branch
@@ -52,24 +52,12 @@ function search() {
 };
 
 
-// Landing page search functions
+// Landing/List/Recipe page search functions
 $(".clickSearch").on("click", function () {
 	search();
 });
 
 $(".search").keyup(function () {
-	var keyCode = (event.keyCode ? event.keyCode : event.which);
-	if (keyCode == 13) {
-		search();
-	}
-});
-
-// List page search functions
-$("#listSearch").on("click", function () {
-	search();
-});
-
-$(".recipeSearch").keyup(function () {
 	var keyCode = (event.keyCode ? event.keyCode : event.which);
 	if (keyCode == 13) {
 		search();
@@ -99,6 +87,7 @@ searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 			var imgUrl = response[i].image;
 			var listImg = $("<img>");
 			listImg.attr("src", imgUrl);
+			listImg.addClass("img-shadow");
 			$(".recipes").append(result);
 			$("#" + i).append(listImg);
 			$("#" + i).append(title);
@@ -109,14 +98,11 @@ searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 
 // clicking on recipe list div extracts calorie count for chosen recipe and feeds it into
 // nutritionix API to pull exercise equivalent data
-
 $(document).on("click", ".recipe", function() {
 	var recipeID = $(this).attr("recipeid");
-	var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID +"/summary??";
-	var ingredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/"+ recipeID +"/information??";
-	//var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/ingredients/"+ recipeID +"/information?amount=0&unit=gram??";
+	var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + recipeID + "/summary??";
+	var ingredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + recipeID + "/information??";
 	var apiKey = "&mashape-key=5b49b5076dmsh8b19b82d3d1e352p188cb3jsn37c3b8570750";
-	// var widgitURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeID + "/nutritionWidget"
 	var summaryURL = recipeURL + apiKey;
 	var ingredientQuery = ingredientURL + apiKey;
 	$.ajax({
@@ -133,7 +119,7 @@ $(document).on("click", ".recipe", function() {
 		recipeImage.push(response.image);
 		recipeTitle.push(response.title);
 	});
-	
+
 	$.ajax({
 		url: summaryURL,
 		method: "GET"
@@ -148,8 +134,6 @@ $(document).on("click", ".recipe", function() {
 		$(finalRecipe).html(summary);
 		$(finalRecipe).prepend(title);
 		var strong = finalRecipe.find("b");
-
-
 		for (i = 0; i < strong.length; i++) { 
 			if ($(strong[i]).text().indexOf("calorie") > 0) {
 				calories = $(strong[i]).text();
@@ -169,8 +153,8 @@ exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 			query: calorieCount + " walk " + calorieCount + " swim " + calorieCount + " biking"
 		},
 		headers: {
-			"x-app-id":"f2e8e6e8",
-			"x-app-key":"9f46a0f17850cc26bc5d992644bd3c2d"
+			"x-app-id": "f2e8e6e8",
+			"x-app-key": "9f46a0f17850cc26bc5d992644bd3c2d"
 		}
 	}).then(function (response) {
 		var walking = response.exercises[0].duration_min;
