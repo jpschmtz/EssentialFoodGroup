@@ -2,7 +2,7 @@ Know-It-All Meals
 ==============
 Know-It-All Meals is a simple web application designed to not omly find you recipes, but find corresponding exercises to burn off the meal of your choice!
 
-                                ![](assets/images/app.gif)
+![](assets/images/app.gif)
 
 [Demo Here!](https://jpschmtz.github.io/EssentialFoodGroup/)
 
