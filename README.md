@@ -28,11 +28,8 @@ APIs Used
 
 Team Members
 ------------------
-Project Lead: Joseph Schmitz <https://github.com/jpschmtz>
-
-Front-End: Jessica Chen <https://github.com/jchen211>
-
-Back-End: Shehan Peiris <https://github.com/shehanpeiris>
-
-Quality Manager: Tiffani Dominguez <https://github.com/TiffaniD3>
+Project Lead: [Joseph Schmitz](https://github.com/jpschmtz)
+Front-End: [Jessica Chen](https://github.com/jchen211)
+Back-End: [Shehan Peiris](https://github.com/shehanpeiris)
+Quality Manager: [Tiffani Dominguez](https://github.com/TiffaniD3)
 
