@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,45 +13,41 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 </head>
-
 <body>
     <header>KNOW-IT-ALL MEALS</header>
-
-    <div class='container'>
-
-        <div class='row'>
+    <div class="container">
+        <div class="row">
             <p> A web application that helps users balance tasty, 
                 home-cooked meals with a need to eat healthy and stay physically fit. 
                 For people looking for cooking inspiration, trying to eat healthy, and 
-                trying to adhere to fitness goals. Also a new way to visualize the meal you are about to eat in the form of exercise.
+                trying to adhere to fitness goals. Also a new way to visulize the
+                meal you are about to eat in the form of exercise.
             </p>
         </div>
-
-        <div class='row'>
-            <input class='search' type='text' placeholder='search for recipes'>
+        <div class="row">
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Please enter an ingredient before searching.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <input class="search" type="text" placeholder="search for recipes">
             <a class="hvr-shadow"><i class="fas fa-search fa-2x clickSearch"></i></a>
         </div>
-    </div>
-
         <br><br>
         <hr>
         <!-- Social Media -->
-        <div class='row'>
+        <div class="row">
             <a class="hvr-shadow"><i class="fab fa-facebook-square fa-2x"></i></a>
             <a class="hvr-shadow"><i class="fab fa-instagram fa-2x"></i></a>
             <a class="hvr-shadow"><i class="fab fa-twitter-square fa-2x"></i></a>
         </div>
-    
-
-
-
-
+    </div>
     <!-- jQuery -->
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <!--link to javascript-->
     <script src="assets/javascript/logic.js"></script>
 </body>
-
 </html>

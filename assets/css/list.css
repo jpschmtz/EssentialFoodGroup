@@ -18,13 +18,11 @@ header {
     margin-bottom: 10px;
 }
 
-.row
- {
+.row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 50px;
     margin-bottom: 40px;
-    
 }
 
 .recipes {
@@ -69,28 +67,66 @@ p:hover, p:focus, p:active {
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
     -webkit-transition-property: box-shadow;
-    transition-property: box-shadow;
-    
-  }
-  .hvr-shadow:hover, .hvr-shadow:focus, .hvr-shadow:active {
+    transition-property: box-shadow;  
+}
+
+.hvr-shadow:hover, .hvr-shadow:focus, .hvr-shadow:active {
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
     color:#3cbbb1;
-  }
+}
 
-  .icons {
-      text-align: center;
-      margin-top: 20px;
-    
-  }
+.icons {
+    text-align: center;
+    margin-top: 20px;
+}
 
-  hr {
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+hr {
     border: none;
     width: 465px;
     height: 4px;
     background-color: #000000;
 }
 
-/* .img-shadow {
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.img-shadow {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(10px) translateZ(5);
@@ -99,6 +135,5 @@ p:hover, p:focus, p:active {
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
     -webkit-transition-property: box-shadow;
-    transition-property: box-shadow;
-    
-  } */
+    transition-property: box-shadow; 
+}

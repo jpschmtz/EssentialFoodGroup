@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var searches = database.ref("/recipe-searches");
 var results = database.ref("/recipe-results");
-var exercise = database.ref("/exercise-calories") // seems to be working but should it have a / like the searches node ref?
+var exercise = database.ref("/exercise-calories");
 var details = database.ref("/recipe-summary");
 var ingredientList = database.ref("/ingredient-list");
 var recipeImage = database.ref("/image");
@@ -26,13 +26,29 @@ var calories;
 // Define a search function once (globally) that we'll call on click (of search icon) & on enter key-press
 function search() {
 	var ingredient = $(".search").val().trim();
-	console.log(ingredient);
-	console.log("testing global function");
+	if (ingredient === "") {
+		var modal = document.getElementById("myModal");
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		// When the user clicks on the button, open the modal 
+		modal.style.display = "block";
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+		modal.style.display = "none";
+		};
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		};
+	} else {
 	$(".search").val("");
 	// push search term to Firebase database
 	searches.push(ingredient);
 	// redirect to the list.html page
 	location.href = "list.html";
+	}
 };
 
 
@@ -65,17 +81,13 @@ searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 			var listTitle = response[i].title;
 			var title = $("<p>").text(listTitle);
 			var id = response[i].id;
-
-			result.attr("id", "" + i + "");
-			result.attr("recipeID", "" + id + "");
+			result.attr("id", ""+i+"");
+			result.attr("recipeID", ""+id+"");
 			result.attr("class", "recipe");
 			var imgUrl = response[i].image;
-
-
 			var listImg = $("<img>");
 			listImg.attr("src", imgUrl);
 			listImg.addClass("img-shadow");
-
 			$(".recipes").append(result);
 			$("#" + i).append(listImg);
 			$("#" + i).append(title);
@@ -86,8 +98,7 @@ searches.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 
 // clicking on recipe list div extracts calorie count for chosen recipe and feeds it into
 // nutritionix API to pull exercise equivalent data
-
-$(document).on("click", ".recipe", function () {
+$(document).on("click", ".recipe", function() {
 	var recipeID = $(this).attr("recipeid");
 	var recipeURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + recipeID + "/summary??";
 	var ingredientURL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + recipeID + "/information??";
@@ -97,7 +108,7 @@ $(document).on("click", ".recipe", function () {
 	$.ajax({
 		url: ingredientQuery,
 		method: "GET"
-	}).then(function (response) {
+	}).then(function(response) {
 		var fullIngredients = response.extendedIngredients;
 		for (i = 0; i < fullIngredients.length; i++) {
 			var list = fullIngredients[i].originalString;
@@ -112,23 +123,18 @@ $(document).on("click", ".recipe", function () {
 	$.ajax({
 		url: summaryURL,
 		method: "GET"
-	}).then(function (response) {
-
+	}).then(function(response) {
 		location.href = "recipe.html";
 		var finalRecipe = $("<div>");
 		var recipeTitle = response.title;
 		var title = $("<p>").text(recipeTitle);
 		var summary = JSON.stringify(response.summary);
-
 		details.push(summary);
 		finalRecipe.attr("class", "finalresult");
 		$(finalRecipe).html(summary);
 		$(finalRecipe).prepend(title);
 		var strong = finalRecipe.find("b");
-
-
-		for (i = 0; i < strong.length; i++) {
-
+		for (i = 0; i < strong.length; i++) { 
 			if ($(strong[i]).text().indexOf("calorie") > 0) {
 				calories = $(strong[i]).text();
 				exercise.push(calories);
@@ -154,7 +160,6 @@ exercise.orderByKey().limitToLast(1).on("child_added", function (snapshot) {
 		var walking = response.exercises[0].duration_min;
 		var swim = response.exercises[1].duration_min;
 		var bike = response.exercises[2].duration_min;
-
 		$("#info").html("<p>Walking: " + walking + "</p><p>Swimming: " + swim + "</p><p>Biking: " + bike + "</p>");
 	});
 });

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,44 +12,41 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-
 </head>
-
 <body>
-
-    <div class='header'>
-        <header>KNOW-IT-ALL MEALS</header>
+    <div class="header">
+        <header><a class="nav-link" href="index.html">KNOW-IT-ALL MEALS</a></header>
     </div>
-
-        <div class='row'>
+    <div class="container">
+        <div class="row">
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Please enter an ingredient before searching.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div>
-                <input class='search' type='text' placeholder='search for recipes'>
+                <input class="search" type="text" placeholder="search for recipes">
                 <a class="hvr-shadow"><i class="fas fa-search fa-2x clickSearch"></i></a>
             </div>
         </div>
-
-        <div class='row-2'>
-            <div class='recipes'></div>
+        <div class="row-2">
+            <div class="recipes"></div>
         </div>
-
-    <br><br>
-    <hr>
-
-     <!-- Social Media -->
-     <div class='icons'>
-        <a class="hvr-shadow"><i class="fab fa-facebook-square fa-2x"></i></a>
-        <a class="hvr-shadow"><i class="fab fa-instagram fa-2x"></i></a>
-        <a class="hvr-shadow"><i class="fab fa-twitter-square fa-2x"></i></a>
+        <br><br>
+        <hr>
+        <!-- Social Media -->
+        <div class="icons">
+            <a class="hvr-shadow"><i class="fab fa-facebook-square fa-2x"></i></a>
+            <a class="hvr-shadow"><i class="fab fa-instagram fa-2x"></i></a>
+            <a class="hvr-shadow"><i class="fab fa-twitter-square fa-2x"></i></a>
+        </div>
     </div>
-
-
-
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
     <!--link to javascript-->
     <script src="assets/javascript/logic.js"></script>
-    
 </body>
-
 </html>
