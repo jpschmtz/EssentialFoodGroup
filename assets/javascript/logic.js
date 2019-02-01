@@ -35,18 +35,22 @@ function search() {
 	location.href = "list.html";
 };
 
-
 // Landing page search functions
-$(".clickSearch").on("click", function () {
-	search();
-});
+// $("#run-search").on("click", function () {
+// 	search();
+// });
 
-$(".search").keyup(function () {
-	var keyCode = (event.keyCode ? event.keyCode : event.which);
-	if (keyCode == 13) {
-		search();
-	}
-});
+$("#recipe-form").on("submit", function(event) {
+	event.preventdefault();
+	search();
+};
+
+// $(".search").keyup(function () {
+// 	var keyCode = (event.keyCode ? event.keyCode : event.which);
+// 	if (keyCode == 13) {
+// 		search();
+// 	}
+// });
 
 // List page search functions
 $("#listSearch").on("click", function () {

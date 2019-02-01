@@ -30,8 +30,15 @@
         </div>
 
         <div class='row'>
-            <input class='search' type='text' placeholder='search for recipes'>
-            <a class="hvr-shadow"><i class="fas fa-search fa-2x clickSearch"></i></a>
+            <form role="form" id="recipe-form">
+                <div class="form-group">
+                    <input type="text" name="fname" class="form-control search" id="search-bar" placeholder="search for recipes" required />
+                </div>
+                
+                <button type="submit" class="btn btn-default clickSearch" id="run-search">
+                    <i class="fa fa-search"></i></button>
+                <!-- <a class="hvr-shadow"><i class="fas fa-search fa-2x clickSearch"></i></a> -->
+            </form>
         </div>
     </div>
 
