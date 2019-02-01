@@ -1,6 +1,6 @@
 Know-It-All Meals
 ==============
-Know-It-All Meals is a simple web application designed to not omly find you recipes, but find corresponding exercises to burn off the meal of your choice!
+Know-It-All Meals is a simple web application designed to not only find you recipes, but find corresponding exercises to burn off the meal of your choice!
 
 ![](assets/images/app.gif)
 
